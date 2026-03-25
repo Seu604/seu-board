@@ -9,3 +9,9 @@ export type LoginRequest = {
     password: string;
 }
 
+export type LoginResponse = {
+    id: number;
+    username: string;
+    status: string;
+    role: string;
+}
