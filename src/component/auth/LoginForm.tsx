@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
-import '../type/Common';
-import '../index.css';
 import { useNavigate } from 'react-router-dom';
-
-type LoginForm = {
-    username: string;
-    password: string;
-}
+import type { LoginForm } from '../../type/Common';
+import '../../type/Common';
 
 export default function LoginForm() {
     const [username, setUsername] = useState('');

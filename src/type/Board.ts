@@ -1,12 +1,15 @@
 import type { CommentResponse } from "./Comment";
 
+// 登録・更新
 export type BoardRequest = {
     title: string;
     content: string;
 }
 
+// ステータス
 export type BoardStatus = "PUBLIC" | "PRIVATE" | "DELETED"
 
+// 一覧
 export type BoardResponse = {
     id: number;
     title: string;
@@ -20,3 +23,6 @@ export type BoardResponse = {
     comments: CommentResponse[];
 }
 
+export type BoardStatusUpdateRequest = {
+    status: BoardStatus;
+}

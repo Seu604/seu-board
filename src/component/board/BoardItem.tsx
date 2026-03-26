@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import type { BoardResponse } from '../type/Board';
+import type { BoardResponse } from '../../type/Board';
 
 const BoardItem = ({ board }: { board: BoardResponse }) => {
     const navigate = useNavigate();
@@ -12,11 +12,6 @@ const BoardItem = ({ board }: { board: BoardResponse }) => {
             <td className="px-5 py-3">
                 <p className="text-sm font-medium text-gray-900">{board.title}</p>
                 <p className="text-xs text-gray-400 mt-0.5">コメント {board.comments.length}件</p>
-            </td>
-            <td className="px-5 py-3">
-                <span className="text-xs font-medium px-2.5 py-1 rounded-full bg-blue-50 text-blue-700">
-                    {board.status}
-                </span>
             </td>
             <td className="px-5 py-3">
                 <div className="flex items-center gap-2">
