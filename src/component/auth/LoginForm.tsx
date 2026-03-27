@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { LoginForm } from '../../type/Common';
 import '../../type/Common';
+import { useMe } from './AuthContext';
 
 export default function LoginForm() {
+    const {setMe} = useMe();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -22,7 +24,10 @@ export default function LoginForm() {
             body: JSON.stringify(payload), 
         });
 
-        if (!res.ok) {
+        if (res.ok) {
+            const data = await res.json();
+            setMe(data);
+        } else {
             throw new Error('Server error')
         }
 

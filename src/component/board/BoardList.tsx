@@ -1,13 +1,20 @@
 import BoardItem from './BoardItem';
 import type { BoardResponse } from '../../type/Board';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useBoardList } from '../../api/SampleData';
 
-const BoardList = ({ boardList }: { boardList: BoardResponse[] }) => {
+const BoardList = () => {
+
+    const { boardList, loading } = useBoardList();
+    
+    const navigate = useNavigate();
+
     return (
         <div className="p-6">
             <div className="flex justify-between items-center mb-6">
                 <p className="text-sm text-gray-400">全{boardList.length}件</p>
-                <button className="text-sm px-4 py-1.5 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+                <button onClick={() => navigate("/board/form")} className="text-sm px-4 py-1.5 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
                     + 新規投稿
                 </button>
             </div>

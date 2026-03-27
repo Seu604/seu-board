@@ -1,21 +1,47 @@
 import type { CommentResponse } from '../type/Comment';
 import type { BoardResponse } from '../type/Board';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export const useBoardList = () => {
     const [ boardList, setBoardList ] = useState<BoardResponse[]>([]);
     const [ loading, setLoading ] = useState(true);
 
+    const isFetched = useRef(false);
+
     useEffect(() => {
+        if (isFetched.current) return;
+        isFetched.current = true;
+
         fetch(`http://localhost:8080/api/board`)
         .then(res => res.json())
         .then(data => { 
             setBoardList(data);
-            setLoading(true); 
+            setLoading(true);
         });
     });
 
     return { boardList, loading };
+}
+
+export const useBoardDetail = (boardId: string) => {
+    const [ boardDetail, setBoardDetail ] = useState<BoardResponse>();
+    const [ loading, setLoading ] = useState(true);
+
+    const isFetched = useRef(false);
+
+    useEffect(() => {
+        if (isFetched.current) return;
+        isFetched.current = true;
+
+        fetch(`http://localhost:8080/api/board/${boardId}`)
+            .then(res => res.json())
+            .then(data => { 
+                setBoardDetail(data);
+                setLoading(true); 
+        });
+    }, [boardId]);
+
+    return { boardDetail, loading };
 }
 
 export const sampleComments: CommentResponse[] = [
